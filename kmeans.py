@@ -4,7 +4,7 @@ import math
 
 x = []
 y = []
-for line in open('input1.txt', 'r'):
+for line in open('input3.txt', 'r'):
     lines = [i for i in line.split("\t")]
     x.append(int(lines[0]))
     y.append(int(lines[1]))
@@ -17,7 +17,8 @@ a3 = np.random.randint(min(x), max(x))
 b3 = np.random.randint(min(y), max(y))
 
 repeat = 0
-while repeat in range(5):
+repeatRange = 10
+while repeat in range(repeatRange):
     z = []
     index, label = 0, 0
     while index in range(len(x)):
@@ -70,5 +71,14 @@ while repeat in range(5):
 
     print(z)
     repeat += 1
-    if repeat < 5:
+    if repeat < repeatRange:
         z.clear()
+
+file1 = open("output3.txt","w")
+index = 0
+text = ""
+while index in range (len(x)):
+    text = str(x[index]) + "\t" + str(y[index]) + "\t" + str(z[index]) +"\n"
+    file1.write(text)
+    index +=1
+file1.close()
