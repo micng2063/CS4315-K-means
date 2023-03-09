@@ -19,9 +19,12 @@ b2 = np.random.randint(min(y), max(y))
 if k >= 3:
     a3 = np.random.randint(min(x), max(x))
     b3 = np.random.randint(min(y), max(y))
-    if k == 4:
+    if k >= 4:
         a4 = np.random.randint(min(x), max(x))
         b4 = np.random.randint(min(y), max(y))
+        if k == 5:
+            a5 = np.random.randint(min(x), max(x))
+            b5 = np.random.randint(min(y), max(y))
 
 repeat = 0
 repeatRange = 10
@@ -71,7 +74,7 @@ if k == 2:
             print("Label:", z)
         if repeat < repeatRange:
             z.clear()
-if k == 3:
+elif k == 3:
     while repeat in range(repeatRange):
         z = []
         index, label = 0, 0
@@ -202,6 +205,94 @@ elif k == 4:
             print("Centroid 2: ", round(a2,3), ",", round(b2,3))
             print("Centroid 3: ", round(a3,3), ",", round(b3,3))
             print("Centroid 4: ", round(a4,3), ",", round(b4,3))
+            print("Label:", z)
+        if repeat < repeatRange:
+            z.clear()
+elif k == 5:
+    while repeat in range(repeatRange):
+        z = []
+        index, label = 0, 0
+        while index in range(len(x)):
+            d1 = math.dist([x[index], y[index]], [a1, b1])
+            d2 = math.dist([x[index], y[index]], [a2, b2])
+            d3 = math.dist([x[index], y[index]], [a3, b3])
+            d4 = math.dist([x[index], y[index]], [a4, b4])
+            d5 = math.dist([x[index], y[index]], [a5, b5])
+            if d1 == min(d1, d2, d3, d4, d5):
+                label = 1
+            elif d2 == min(d1, d2, d3, d4, d5):
+                label = 2
+            elif d3 == min(d1, d2, d3, d4, d5):
+                label = 3
+            elif d4 == min(d1, d2, d3, d4, d5):
+                label = 4
+            elif d5 == min(d1, d2, d3, d4, d5):
+                label = 5
+            z.append(label)
+            index += 1
+
+        label1 = []
+        label2 = []
+        label3 = []
+        label4 = []
+        label5 = []
+
+        index = 0
+        while index in range(len(z)):
+            if z[index] == 1:
+                label1.append(index)
+            elif z[index] == 2:
+                label2.append(index)
+            elif z[index] == 3:
+                label3.append(index)
+            elif z[index] == 4:
+                label4.append(index)
+            elif z[index] == 5:
+                label5.append(index)
+            index += 1
+
+        index, xSum, ySum = 0, 0, 0
+        while index in range(len(label1)):
+            xSum += x[label1[index]]
+            ySum += y[label1[index]]
+            index += 1
+        a1, b1 = xSum / len(label1), ySum / len(label1)
+
+        index, xSum, ySum = 0, 0, 0
+        while index in range(len(label2)):
+            xSum += x[label2[index]]
+            ySum += y[label2[index]]
+            index += 1
+        a2, b2 = xSum / len(label2), ySum / len(label2)
+
+        index, xSum, ySum = 0, 0, 0
+        while index in range(len(label3)):
+            xSum += x[label3[index]]
+            ySum += y[label3[index]]
+            index += 1
+        a3, b3 = xSum / len(label3), ySum / len(label3)
+
+        index, xSum, ySum = 0, 0, 0
+        while index in range(len(label4)):
+            xSum += x[label4[index]]
+            ySum += y[label4[index]]
+            index += 1
+        a4, b4 = xSum / len(label4), ySum / len(label4)
+
+        index, xSum, ySum = 0, 0, 0
+        while index in range(len(label5)):
+            xSum += x[label5[index]]
+            ySum += y[label5[index]]
+            index += 1
+        a5, b5 = xSum / len(label5), ySum / len(label5)
+
+        repeat += 1
+        if repeat == (repeatRange-1):
+            print("Centroid 1: ", round(a1,3), ",", round(b1,3))
+            print("Centroid 2: ", round(a2,3), ",", round(b2,3))
+            print("Centroid 3: ", round(a3,3), ",", round(b3,3))
+            print("Centroid 4: ", round(a4,3), ",", round(b4,3))
+            print("Centroid 5: ", round(a5,3), ",", round(b5,3))
             print("Label:", z)
         if repeat < repeatRange:
             z.clear()
