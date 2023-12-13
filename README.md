@@ -1,5 +1,5 @@
 # CS 4315 - Assignment 3 - K-means clustering 
-Completed on March, 9th, 2023. Python
+- Course: CS 4315 - Introduction to Data Mining and Information Retrieval | Instructor: Dr. Byron Gao, Associate Professor
 
 # How to run
 - unzip the file and move files from dataset folder to main folder
